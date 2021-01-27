@@ -6,7 +6,15 @@ from sqlalchemy import create_engine
 import re
 
 def load_data(messages_filepath, categories_filepath):
+    """loads both datasets from csv and merge into one df
 
+    Parameters: 
+    messages_filepath (str): location path of message csv
+    categories_filepath (str): location path of category csv 
+    Returns: 
+    df: dataframe
+    """
+    
     messages = pd.read_csv(messages_filepath)
     categories = pd.read_csv(categories_filepath)
     df = messages.merge(categories,how='inner',left_on=['id'],right_on=['id'])
@@ -15,6 +23,14 @@ def load_data(messages_filepath, categories_filepath):
 
 
 def clean_data(df):
+    """cleans loaded df, splits into columns arranges column names 
+       and filters out unneccessary rows
+
+    Parameters: 
+    df: dataframe that cleaning process to be applied to
+    Returns: 
+    df: cleaned dataframe
+    """
     
     categories = pd.DataFrame(df.categories.str.split(';',36).tolist())
     row = categories.iloc[0]
@@ -30,10 +46,18 @@ def clean_data(df):
     df = df.drop_duplicates()
     df['message'] = df['message'].apply(lambda x: x.lower())
     
+    for c in category_colnames:
+        df = df[df[c] != 2]
+        
     return df
 
 def save_data(df, database_filename):
+    """saves data into SQLlite DB
 
+    Parameters: 
+    df: dataframe that has the relevant data
+    database_filename: sqllite db path to put data in
+    """
     engine = create_engine('sqlite:///' + database_filename)
 
     conn = sqlite3.connect(database_filename)
