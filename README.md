@@ -1,14 +1,16 @@
 # Disaster Response Pipeline Project
 
-### Instructions:
-1. Run the following commands in the project's root directory to set up your database and model.
+In this project I apply data engineering skills to create an API that classifies disaster messages from various sources into 36 categories
 
-    - To run ETL pipeline that cleans data and stores in database
-        `python data/process_data.py data/disaster_messages.csv data/disaster_categories.csv data/DisasterResponse.db`
-    - To run ML pipeline that trains classifier and saves
-        `python models/train_classifier.py data/DisasterResponse.db models/classifier.pkl`
+## Installation
 
-2. Run the following command in the app's directory to run your web app.
-    `python run.py`
+You need python 3 to run this code.
 
-3. Go to http://0.0.0.0:3001/
+## Project Structure
+There are three parts of the project:
+### ETL Pipeline
+Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train.
+### ML Pipeline
+The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
+### Flask Web App
+The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
