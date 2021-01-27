@@ -31,14 +31,31 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import precision_recall_fscore_support as score
 
 def load_data(database_filepath):
+    """loads data from sqlite db and splits it into input&output dataframes
+
+    Parameters: 
+    database_filepath: sqllite database filepath
+    Returns: 
+    X: input dataframe
+    Y: output dataframe
+    cats : category column list
+    """
     engine = create_engine('sqlite:///' + database_filepath)
     df = pd.read_sql_table('message_cats', engine)
     X = df.message.values
     Y = df[df.columns[4:]].values
-    return X, Y, df.columns[4:]
+    cats = df.columns[4:]
+    return X, Y, cats
 
 
 def tokenize(text):
+    """tokenization function to process text data
+
+    Parameters: 
+    text: text to tokenize
+    Returns: 
+    clean_tokens: tokenized word list
+    """
     tokens = word_tokenize(text)
     lemmatizer = WordNetLemmatizer()
 
@@ -51,16 +68,18 @@ def tokenize(text):
 
 
 def build_model():
-    pipeline = Pipeline([
-                    ('vect', CountVectorizer(tokenizer=tokenize)),
-                    ('tfidf', TfidfTransformer()),
-                    ('clf', MultiOutputClassifier(RandomForestClassifier()))])
+    """builds a machine learning pipeline"""
+    
+    #pipeline = Pipeline([
+    #                ('vect', CountVectorizer(tokenizer=tokenize)),
+    #                ('tfidf', TfidfTransformer()),
+    #                ('clf', MultiOutputClassifier(RandomForestClassifier()))])
         
-    parameters = [{'vect__ngram_range': ((1, 1),(1, 2)),
-                   'vect__max_features': (None, 5000),
-                   'clf__estimator__n_estimators': [10, 100, 250],
-                   'clf__estimator__max_depth':[8],
-                   'clf__estimator__random_state':[42]}]
+    #parameters = [{'vect__ngram_range': ((1, 1),(1, 2)),
+    #               'vect__max_features': (None, 5000),
+    #               'clf__estimator__n_estimators': [10, 100, 250],
+    #               'clf__estimator__max_depth':[8],
+    #               'clf__estimator__random_state':[42]}]
                   
     pipeline = Pipeline([
         ('vect', CountVectorizer()),
@@ -80,9 +99,24 @@ def build_model():
 
 
 def evaluate_model(model, X_test, Y_test, category_names):
+    """evaluates the machine learning pipeline
+    
+    Parameters: 
+    model: machine learning model
+    X_test: test input dataframe
+    Y_test: test output dataframe
+    category_names: category name column list
+    """
     y_pred = model.predict(X_test)
 
     def report2dict(cr):
+        """converts classification report to dictionary
+        
+        Parameters: 
+        cr: classification report
+        Returns:
+        class_data: report dictionary
+        """
         tmp = list()
         class_data = defaultdict(dict)
         for row in cr.split("\n"):
@@ -104,6 +138,13 @@ def evaluate_model(model, X_test, Y_test, category_names):
 
 
 def save_model(model, model_filepath):
+    """saves the machine learning model to pickle file
+    
+    Parameters: 
+    model: machine learning model
+    model_filepath: pickle file path
+    """
+    
     pickle.dump(model, open(model_filepath, 'wb'))
 
 
