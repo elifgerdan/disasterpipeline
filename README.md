@@ -52,13 +52,13 @@ from sqlalchemy import create_engine
 ## Project Structure
 There are three parts of the project:
 ### ETL Pipeline
-- [process_data.py](https://github.com/aimeos/aimeos-typo3#readme)  -  Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train. 
+- [process_data.py](https://github.com/elifgerdan/disasterpipeline/blob/main/data/process_data.py)  -  Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train. 
 ![alt text](https://github.com/elifgerdan/disasterpipeline/blob/main/heat.png?raw=true)
 
 
 ### ML Pipeline
-The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
+- [train_classifier.py](https://github.com/elifgerdan/disasterpipeline/blob/main/models/train_classifier.py)  -  The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
 ### Flask Web App
-The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
+- [run.py](https://github.com/elifgerdan/disasterpipeline/blob/main/app/run.py)  -  The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
 
 
