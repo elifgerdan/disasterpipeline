@@ -60,5 +60,8 @@ There are three parts of the project:
 - [train_classifier.py](https://github.com/elifgerdan/disasterpipeline/blob/main/models/train_classifier.py)  -  The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
 ### Flask Web App
 - [run.py](https://github.com/elifgerdan/disasterpipeline/blob/main/app/run.py)  -  The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
+## Results
+This classification problem is a type of supervised machine learning because the model learns to classify the outcome based on learning from the data given to it. I have managed to extract and clean the data and load it into an sqlite db. I then process the messages using nlp techniques, after that I used multi level classification machine learning technique to predict on the cleaned-tokenized training dataset. Finally I put the results on the flask app to explore. :)
 
-
+## Licensing, Authors, Acknowledgements
+Thank you to FigureEight (now appen) for providing this meaningful dataset and Udacity for Data Science Nanodegree program based on real problem and use cases.
