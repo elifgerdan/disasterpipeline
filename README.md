@@ -52,7 +52,7 @@ from sqlalchemy import create_engine
 ## Project Structure
 There are three parts of the project:
 ### ETL Pipeline
-Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train. 
+- [process_data.py](https://github.com/aimeos/aimeos-typo3#readme)  -  Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train. 
 ![alt text](https://github.com/elifgerdan/disasterpipeline/blob/main/heat.png?raw=true)
 
 
