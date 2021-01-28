@@ -1,10 +1,21 @@
-# Disaster Response Pipeline Project
+# Table of Contents
+
+1. [Project Motivation](#disaster-response-pipeline-project-motivation)
+2. [Installation](#installation)
+3. [Usage](#usage)
+4. [File Descriptions](#project-structure)
+4. [Results](#results)
+6. [Licensing, Authors, Acknowledgements](#licensing-authors-acknowledgements)
+
+# Disaster Response Pipeline Project Motivation
 
 In this project I apply data engineering skills to create an API that classifies disaster messages from various sources into 36 categories. You can see the categoical distribution of the training data below;
 ![alt text](https://github.com/elifgerdan/disasterpipeline/blob/main/cats.png?raw=true)
 
 ## Installation
 Main libraries you may need for this project to run flawlessly are; numpy, pandas, json, sklearn, sqlite3, sqlalchemy, plotly, flask, collections, pickle, re. you can see a full list of them below. You may use the package manager [pip](https://pip.pypa.io/en/stable/) to install if any of them is missing.
+
+## Usage
 ```python
 import json
 import nltk
