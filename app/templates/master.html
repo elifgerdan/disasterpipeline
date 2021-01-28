@@ -52,7 +52,7 @@
     </div>
 </div>
 
-<div class="container">
+<div class="container" align="center">
     {% block content %}
         <div class="page-header">
             <h1 class="text-center">Overview of Training Dataset</h1>
@@ -60,11 +60,11 @@
     {% endblock %}
 
     {% for id in ids %}
-        <div id="{{id}}"></div>
+        <div id="{{id}}" align="center"></div>
     {% endfor %}
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" align="center">
     const graphs = {{graphJSON | safe}};
     const ids = {{ids | safe}};
     for(let i in graphs) {
