@@ -1,13 +1,13 @@
 import json
 import plotly
 import pandas as pd
-
+import numpy as np
 from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
 
 from flask import Flask
 from flask import render_template, request, jsonify
-from plotly.graph_objs import Bar
+from plotly.graph_objs import Bar, Pie, Heatmap, Margin
 from sklearn.externals import joblib
 from sqlalchemy import create_engine
 
@@ -42,10 +42,61 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    colorscale = [[0, '#454D59'],[0.5, '#FFFFFF'], [1, '#F1C40F']]
+    
+    cat_counts = df[np.delete(df.columns[4:],9)].sum()
+    cat_names = list(cat_counts.index)
+    
+    cols = np.delete(df.columns[4:],9)
+    corr = df[cols].corr()
+    
+    def df_to_plotly(df):
+        return {'z': df.values.tolist(),
+                'x': df.columns.tolist(),
+                'y': df.index.tolist()}
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
+    {
+            'data': [
+                Bar(
+                    x=cat_names,
+                    y=cat_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': ""
+                },
+                'xaxis': {
+                    'title': ""
+                }
+            }
+        },
+        {
+            'data': [
+                Heatmap(z=corr.values.tolist(),
+                                  colorscale='Twilight',
+                                  x=corr.columns.tolist(),
+                                  y=corr.index.tolist())
+            ],
+
+            'layout': {
+                'title': 'Correlation Heatmap of Categories',
+                'yaxis': {
+                    'title': ""
+                },
+                
+                'xaxis': {
+                    'title': ""
+                },
+                "width":800,
+                "height":800,"valign":"middle"
+            }
+        },
         {
             'data': [
                 Bar(
