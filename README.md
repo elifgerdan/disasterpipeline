@@ -15,4 +15,4 @@ The machine learning pipeline is concerned with training the model and testing i
 ### Flask Web App
 The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
 
-![alt text](https://github.com/elifgerdan/disasterpipeline/heat.png?raw=true)
+![alt text](https://github.com/elifgerdan/disasterpipeline/blob/main/heat.png?raw=true)
