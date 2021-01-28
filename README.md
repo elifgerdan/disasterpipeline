@@ -14,3 +14,5 @@ Extract, transform and load the data. This is concerned with processing the data
 The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
 ### Flask Web App
 The run.py process_data and train_classifier are basically the ETL pipeline and ML pipeline included in the terminal work space to make the app work.
+
+![alt text](https://github.com/elifgerdan/disasterpipeline/heat.png?raw=true)
