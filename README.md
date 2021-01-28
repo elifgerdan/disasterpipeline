@@ -3,7 +3,7 @@
 1. [Project Motivation](#disaster-response-pipeline-project-motivation)
 2. [Installation](#installation)
 3. [Usage](#usage)
-4. [File Descriptions](#project-structure)
+4. [Project Stracture & File Descriptions](#project-structure)
 4. [Results](#results)
 6. [Licensing, Authors, Acknowledgements](#licensing-authors-acknowledgements)
 
