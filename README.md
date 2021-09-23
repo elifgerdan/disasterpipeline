@@ -55,7 +55,6 @@ There are three parts of the project:
 - [process_data.py](https://github.com/elifgerdan/disasterpipeline/blob/main/data/process_data.py)  -  Extract, transform and load the data. This is concerned with processing the data. Namely I loaded, merged and cleaned the messages and categories dataset. I stored into an SQLite database so that the model can use it in the next step to train. 
 ![alt text](https://github.com/elifgerdan/disasterpipeline/blob/main/heat.png?raw=true)
 
-
 ### ML Pipeline
 - [train_classifier.py](https://github.com/elifgerdan/disasterpipeline/blob/main/models/train_classifier.py)  -  The machine learning pipeline is concerned with training the model and testing it. The pipeline includes a text processing part because it deals with text sources as mentioned in the beginning. I also used GridSearchCV to tune the model further and save it as a pickle file.
 ### Flask Web App
